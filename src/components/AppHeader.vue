@@ -8,6 +8,11 @@ export default{
       store,
      }
     },
+    methods: {
+        searchMedia() {
+            this.$emit('search');
+        },
+    },
 }
 
 </script>
@@ -23,7 +28,7 @@ export default{
             <div class="input-group p-4">
                 <input type="text" class="form-control" placeholder="Cerca..." aria-label="Cerca" aria-describedby="button-addon2" v-model.trim="store.searchedText">
 
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click.prevent="$emit('search')">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click.prevent="searchMedia">
                     Search
                 </button>
             </div>    
