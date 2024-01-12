@@ -29,7 +29,7 @@ export default{
                 <input type="text" class="form-control" placeholder="Cerca..." aria-label="Cerca" aria-describedby="button-addon2" v-model.trim="store.searchedText">
 
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click.prevent="searchMedia">
-                    Search
+                    Cerca
                 </button>
             </div>    
         </div>
@@ -44,6 +44,11 @@ export default{
 .container-fluid{
     background-color: black;
     color: rgb(255, 0, 0);
+
+    .btn{
+        background-color:rgb(255, 0, 0);
+        color:white;
+    }
 }
 
 </style>

@@ -8,40 +8,53 @@ export default{
       store,
      }
     },
+
     methods: {
-    getFullImagePath(imgPath) {
+    getFullImagePath(poster_path) {
+    const defaultImage = 'https://thumbs.dreamstime.com/b/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available-236105299.jpg';
 
-      return `https://image.tmdb.org/t/p/w342${imgPath}`;
-
-      },
-    },
     
+    if (poster_path === null) {
+      return defaultImage;
+    }else{
+
+        const imageUrl = `https://image.tmdb.org/t/p/w342${poster_path}`;
+        return imageUrl;
+    }
+   
+   },
+  }
 }
+    
+
 
 </script>
 
 <template>
+    
+    
+    <h1 v-if="store.searchedFilm.length > 0" class="mt-4">Film</h1>
 
     <div class="row flex-wrap">
 
-        <div v-for="film in store.searchedFilm" :key="film.id" class="flip-card mb-4">
+        <div v-for="film in store.searchedFilm" :key="film.id" class="flip-card">
             
             <div class="flip-card-inner">
                 <div class="flip-card-front">
 
-                    <img class="ms-poster-img" :src="getFullImagePath(film.poster_path)" alt="">
+                    <img class="ms-poster-img" :src="getFullImagePath(film.poster_path)" alt="" >
                     
                 </div>
                 <div class="flip-card-back">                   
-                    <div>
+                    <div class="p-3">
                         <span class="text-danger">Titolo:</span>
-                        <h4 class="d-inline p-2">{{ film.title}}</h4>
+                        <h5 class="d-inline p-2">{{ film.title}}</h5>
                     </div>
 
-                    <p><span class="text-danger">Titolo originale::</span> {{film.original_title }}</p>
+                    <p class="p-1"><span class="text-danger">Titolo originale::</span> {{film.original_title }}</p>
 
                             
-                    <div class="text-center p-1">
+                    <div class="text-center">
                         <img :src="store.flagImages[film.original_language] || store.flagImages.otherLang" alt=""> 
                     </div>
 
@@ -56,7 +69,7 @@ export default{
 
                     <h5 class="text-center mb-3">Trama</h5> 
                     
-                    <p>{{film.overview}}</p>
+                    <p >{{film.overview}}</p>
                 
                 
                  </div>
@@ -68,7 +81,7 @@ export default{
     </div>
 
 
-    <h2 class="pt-4">Series</h2>
+    <h1 v-if="store.searchedSeries.length > 0" class="mt-4">Series</h1>
 
     <div class="row flex-wrap">
 
@@ -82,18 +95,18 @@ export default{
                     
                 </div>
                 <div class="flip-card-back">                   
-                    <div>
+                    <div class="p-3">
                         <span class="text-danger">Titolo:</span>
-                        <h4>{{ series.name }}</h4>
+                        <h5>{{ series.name }}</h5>
                     </div>
 
-                    <p>
+                    <p class="p-1">
                         <span class="text-danger">Titolo originale:</span>
                         {{ series.original_name }}
                     </p>
 
                     <p>
-                        <div class="text-center p-3">
+                        <div class="text-center">
                            <img :src="store.flagImages[series.original_language] || store.flagImages.otherLang" alt=""> 
                         </div>
                     </p>
@@ -145,11 +158,9 @@ export default{
 
 .flip-card {
     background-color: transparent;
-    width: calc((100% * 1/4) - 20px);
+    width: calc(100% * 1/4);
     padding: 0;
-    margin-right: 20px;
-    height: 400px;
-    border: 1px solid #f1f1f1;
+    height: 500px;
     perspective: 1000px; 
   }
   
@@ -159,8 +170,9 @@ export default{
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 2s;
     transform-style: preserve-3d;
+    font-size: 14px;
   }
   
  
@@ -177,7 +189,6 @@ export default{
   }
   
   .flip-card-front {
-    background-color: #bbb;
     color: black;
   }
   
@@ -185,6 +196,11 @@ export default{
     background-color:black;
     color: white;
     transform: rotateY(180deg);
+  }
+
+  h1{
+   font-size: 50px;
+    font-family: 'Bungee Spice';
   }
   
   

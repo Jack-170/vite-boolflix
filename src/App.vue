@@ -87,5 +87,17 @@ export default{
 <style lang="scss">
 @use './styles/general.scss' as *;
 
+header{
+    height: 100px;
+}
+
+main{
+    height: calc(100vh - 100px);
+    overflow: auto;
+    background-color: rgb(191, 191, 191);
+}
+
+
+
 
 </style>

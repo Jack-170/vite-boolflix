@@ -21,13 +21,6 @@ export default{
       store,
      }
     },
-    methods: {
-    getFullImagePath(imgPath) {
-
-      return `https://image.tmdb.org/t/p/w342${imgPath}`;
-
-      },
-    },
    
     
 }
@@ -38,7 +31,6 @@ export default{
 
    <div class="container">
     
-        <h2 class="pt-4">Film</h2>
 
         <AppCatalog/>
 
